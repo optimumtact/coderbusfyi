@@ -53,6 +53,8 @@ def build_sections() -> str:
         items = []
         for label, value in parser.items(section):
             url, meta = parse_value(value)
+            if meta[-1] != ".":
+                meta = f"{meta}."
             items.append((label, url, meta))
         sections.append(render_section(index, section, items))
 
