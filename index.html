@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Coderbus resources"
+    />
+    <title>CoderBus // Tools</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <div class="brand-block">
+          <span class="brand-mark">[ Coderbus ]</span>
+          <span class="brand-subtitle">Tools and Links</span>
+        </div>
+
+        <div class="topbar-controls">
+          <button class="theme-toggle" type="button" aria-label="Toggle theme" aria-pressed="false">
+            <span class="theme-toggle__icon" aria-hidden="true">☾</span>
+            <span class="theme-toggle__label">dark</span>
+          </button>
+
+          <div class="status-panel">
+            <span class="status-led"></span>
+            <span>online</span>
+          </div>
+        </div>
+      </header>
+
+      <main class="content">
+                <section class="panel">
+          <div class="section-heading">
+            <span class="heading-tag">[01]</span>
+            <h2>Core references</h2>
+          </div>
+
+          <ul class="resource-list">
+            <li class="resource-item">
+              <a href="https://ref.dm-lang.org/" target="_blank" rel="noreferrer">DM Reference</a>
+              <span class="meta">Unofficial DM reference that is easy to use.</span>
+            </li>
+            <li class="resource-item">
+              <a href="https://play.dm-lang.org/" target="_blank" rel="noreferrer">DM Playground</a>
+              <span class="meta">Web based DM compiler and editor.</span>
+            </li>
+            <li class="resource-item">
+              <a href="https://byond-builds.dm-lang.org/" target="_blank" rel="noreferrer">DM Build mirror</a>
+              <span class="meta">Mirror of the official BYOND build packages.</span>
+            </li>
+          </ul>
+        </section>
+        <section class="panel">
+          <div class="section-heading">
+            <span class="heading-tag">[02]</span>
+            <h2>Learning paths</h2>
+          </div>
+
+          <ul class="resource-list">
+            <li class="resource-item">
+              <a href="https://www.youtube.com/playlist?list=PL6o5Pj2jK5oR32IIISSjMx_fJ-X5gYE2Y" target="_blank" rel="noreferrer">SS13 Hosting Guide</a>
+              <span class="meta">Play list of videos about hosting Space Station 13 Servers.</span>
+            </li>
+          </ul>
+        </section>
+        <section class="panel">
+          <div class="section-heading">
+            <span class="heading-tag">[03]</span>
+            <h2>Toolbox</h2>
+          </div>
+
+          <ul class="resource-list">
+            <li class="resource-item">
+              <a href="https://marketplace.visualstudio.com/items?itemName=platymuus.dm-langclient" target="_blank" rel="noreferrer">DM Language Server</a>
+              <span class="meta">Visual Studio Code extension that provides DM language support.</span>
+            </li>
+            <li class="resource-item">
+              <a href="https://github.com/apps/mapdiffbot-2" target="_blank" rel="noreferrer">Map Diff Bot</a>
+              <span class="meta">Github App that shows map changes in github PRs.</span>
+            </li>
+            <li class="resource-item">
+              <a href="https://github.com/apps/icondiffbot-2" target="_blank" rel="noreferrer">Icon Diff Bot</a>
+              <span class="meta">Github App that shows icon changes in github PRs.</span>
+            </li>
+            <li class="resource-item">
+              <a href="https://affectedarc07.co.uk/rscexplorer/" target="_blank" rel="noreferrer">RSC Explorer</a>
+              <span class="meta">Tool for exploring RSC files.</span>
+            </li>
+            <li class="resource-item">
+              <a href="https://github.com/tgstation/tgstation-server" target="_blank" rel="noreferrer">TGS</a>
+              <span class="meta">Hosting tool that manages DreamDaemon instances and integrates github repos.</span>
+            </li>
+          </ul>
+        </section>
+
+      </main>
+    </div>
+
+    <script>
+      (function () {
+        const root = document.documentElement;
+        const button = document.querySelector('.theme-toggle');
+        const icon = document.querySelector('.theme-toggle__icon');
+        const label = document.querySelector('.theme-toggle__label');
+
+        function applyTheme(theme) {
+          root.setAttribute('data-theme', theme);
+          const isLight = theme === 'light';
+          button.setAttribute('aria-pressed', String(isLight));
+          icon.textContent = isLight ? '☀' : '☾';
+          label.textContent = isLight ? 'light' : 'dark';
+        }
+
+        const storedTheme = localStorage.getItem('coderbus-theme');
+        const browserPrefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+        const initialTheme = storedTheme || (browserPrefersLight ? 'light' : 'dark');
+        applyTheme(initialTheme);
+
+        button.addEventListener('click', function () {
+          const nextTheme = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+          localStorage.setItem('coderbus-theme', nextTheme);
+          applyTheme(nextTheme);
+        });
+      })();
+    </script>
+  </body>
+</html>

@@ -33,9 +33,3 @@ Then visit `http://localhost:8000`.
 2. In the repository settings, enable GitHub Pages.
 3. Set the source to **GitHub Actions**.
 4. The page will deploy automatically on pushes to the `main` branch.
-
-## Customize
-
-Edit the categories and links in `resources.ini`, and adjust the visual treatment in `styles.css`.
-# coderbusfyi
-# coderbusfyi
