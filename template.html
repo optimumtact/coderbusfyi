@@ -14,7 +14,7 @@
     <div class="page-shell">
       <header class="topbar">
         <div class="brand-block">
-          <span class="brand-mark">[ Coder // Bus ]</span>
+          <span class="brand-mark">[ Coder // <a class="bus-button" >Bus</a> ]</span>
           <span class="brand-subtitle">Tools and Links</span>
         </div>
 
@@ -42,6 +42,7 @@
         const button = document.querySelector('.theme-toggle');
         const icon = document.querySelector('.theme-toggle__icon');
         const label = document.querySelector('.theme-toggle__label');
+        const busButton = document.querySelector('.bus-button');
 
         function applyTheme(theme) {
           root.setAttribute('data-theme', theme);
@@ -76,6 +77,15 @@
           const nextTheme = cycle[(currentIndex + 1) % cycle.length];
           localStorage.setItem('coderbus-theme', nextTheme);
           applyTheme(nextTheme);
+        });
+        busButton.addEventListener('click', function () {
+          const bodyClasslist = document.body.classList
+          if(bodyClasslist.contains('bus-mode')){
+            bodyClasslist.remove('bus-mode');
+          }
+          else {
+            bodyClasslist.add('bus-mode');
+          }
         });
 
         const statusPanel = document.querySelector('.status-panel');
