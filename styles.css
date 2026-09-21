@@ -625,6 +625,12 @@ body::after {
   font-weight: bold;
 }
 
-.bus-mode {
-  background-image: url("https://www.rushtruckcenters.com/siteassets/on-page-images/buses/blue-bird/blue-bird-all-american-fe_1040x770.png");
+body.bus-mode,
+:root[data-theme="light"] body.bus-mode,
+:root[data-theme="marisa"] body.bus-mode,
+:root[data-theme="matrix"] body.bus-mode {
+  background-image: url("bus.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
