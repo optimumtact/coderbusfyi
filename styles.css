@@ -11,6 +11,9 @@
   --accent: #edf6ff;
   --accent-soft: rgba(176, 214, 255, 0.35);
   --shadow: rgba(140, 170, 205, 0.1);
+  --status-parallax-duration: 3s;
+  --status-parallax-opacity: 0.22;
+  --status-parallax-shift: 140%;
 }
 
 :root[data-theme="light"] {
@@ -248,6 +251,8 @@ body::after {
 }
 
 .status-panel {
+  position: relative;
+  isolation: isolate;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -256,6 +261,51 @@ body::after {
   font-size: 0.72rem;
   text-transform: lowercase;
   color: var(--soft);
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.status-panel::before {
+  content: "";
+  position: absolute;
+  inset: -30% -20%;
+  z-index: 0;
+  background-image: url("vengabus.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0;
+  filter: drop-shadow(0 0 12px rgba(103, 194, 255, 0.5));
+}
+
+.status-panel.is-parallaxing::before {
+  animation: status-parallax var(--status-parallax-duration) linear forwards;
+}
+
+.status-panel > * {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes status-parallax {
+  0% {
+    opacity: 0;
+    transform: translateX(calc(-1 * var(--status-parallax-shift))) scale(1.2);
+  }
+  15% {
+    opacity: var(--status-parallax-opacity);
+  }
+  45% {
+    opacity: var(--status-parallax-opacity);
+    transform: translateX(0) scale(1.1);
+  }
+  70% {
+    opacity: var(--status-parallax-opacity);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(var(--status-parallax-shift)) scale(1.2);
+  }
 }
 
 .status-led {

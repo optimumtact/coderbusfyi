@@ -61,6 +61,37 @@
           localStorage.setItem('coderbus-theme', nextTheme);
           applyTheme(nextTheme);
         });
+
+        const statusPanel = document.querySelector('.status-panel');
+        if (statusPanel) {
+          const minDelay = 10000;
+          const maxDelay = 60000;
+          const animationDurationMs = 5000;
+
+          function triggerStatusParallax() {
+            const now = new Date().toISOString();
+            console.log('[parallax] trigger at', now);
+            statusPanel.classList.remove('is-parallaxing');
+            void statusPanel.offsetWidth;
+            statusPanel.classList.add('is-parallaxing');
+
+            setTimeout(function () {
+              const finishTime = new Date().toISOString();
+              console.log('[parallax] finish at', finishTime);
+              statusPanel.classList.remove('is-parallaxing');
+              scheduleStatusParallax();
+            }, animationDurationMs);
+          }
+
+          function scheduleStatusParallax() {
+            const delay = minDelay + Math.random() * (maxDelay - minDelay);
+            const nextAt = new Date(Date.now() + delay).toISOString();
+            console.log('[parallax] scheduled for', nextAt, 'delayMs=', delay.toFixed(0));
+            setTimeout(triggerStatusParallax, delay);
+          }
+
+          scheduleStatusParallax();
+        }
       })();
     </script>
   </body>

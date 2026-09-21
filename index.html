@@ -7,14 +7,14 @@
       name="description"
       content="Coderbus resources"
     />
-    <title>CoderBus // Tools</title>
+    <title>Coder // Bus</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <div class="page-shell">
       <header class="topbar">
         <div class="brand-block">
-          <span class="brand-mark">[ Coderbus ]</span>
+          <span class="brand-mark">[ Coder // Bus ]</span>
           <span class="brand-subtitle">Tools and Links</span>
         </div>
 
@@ -51,6 +51,10 @@
               <a href="https://byond-builds.dm-lang.org/" target="_blank" rel="noreferrer">DM Build mirror</a>
               <span class="meta">Mirror of the official BYOND build packages.</span>
             </li>
+            <li class="resource-item">
+              <a href="https://www.byond.com/docs/ref/#/DM" target="_blank" rel="noreferrer">DM Reference (Official)</a>
+              <span class="meta">Official reference (not as easy to use).</span>
+            </li>
           </ul>
         </section>
         <section class="panel">
@@ -62,7 +66,19 @@
           <ul class="resource-list">
             <li class="resource-item">
               <a href="https://www.youtube.com/playlist?list=PL6o5Pj2jK5oR32IIISSjMx_fJ-X5gYE2Y" target="_blank" rel="noreferrer">SS13 Hosting Guide</a>
-              <span class="meta">Play list of videos about hosting Space Station 13 Servers.</span>
+              <span class="meta">Playlist of videos about hosting Space Station 13 Servers.</span>
+            </li>
+            <li class="resource-item">
+              <a href="https://github.com/kinggoldcatter/Wine-Byond-help" target="_blank" rel="noreferrer">Wine Byond Help</a>
+              <span class="meta">Tips and tricks for getting byond running in linux.</span>
+            </li>
+            <li class="resource-item">
+              <a href="https://www.byond.com/forum/post/2215739" target="_blank" rel="noreferrer">Ter13&#x27;s Snippet Sundays</a>
+              <span class="meta">Snippets from a BYOND wizard (not SS13 focused).</span>
+            </li>
+            <li class="resource-item">
+              <a href="https://spacestation13.github.io/DMByExample/introduction.html" target="_blank" rel="noreferrer">DM by example</a>
+              <span class="meta">Step by step guide to DM in the style of rust by example.</span>
             </li>
           </ul>
         </section>
@@ -78,16 +94,33 @@
               <span class="meta">Visual Studio Code extension that provides DM language support.</span>
             </li>
             <li class="resource-item">
+              <a href="https://affectedarc07.co.uk/rscexplorer/" target="_blank" rel="noreferrer">RSC Explorer</a>
+              <span class="meta">Tool for exploring RSC files.</span>
+            </li>
+            <li class="resource-item">
+              <a href="https://github.com/SpaiR/StrongDMM" target="_blank" rel="noreferrer">StrongDMM</a>
+              <span class="meta">Robust Map Editor for BYOND.</span>
+            </li>
+            <li class="resource-item">
+              <a href="https://hackmd.io/@tgstation/SyVma0dS5" target="_blank" rel="noreferrer">Guide To Mapping</a>
+              <span class="meta">Learn How To Work With BYOND Maps.</span>
+            </li>
+          </ul>
+        </section>
+        <section class="panel">
+          <div class="section-heading">
+            <span class="heading-tag">[04]</span>
+            <h2>Infrastructure</h2>
+          </div>
+
+          <ul class="resource-list">
+            <li class="resource-item">
               <a href="https://github.com/apps/mapdiffbot-2" target="_blank" rel="noreferrer">Map Diff Bot</a>
               <span class="meta">Github App that shows map changes in github PRs.</span>
             </li>
             <li class="resource-item">
               <a href="https://github.com/apps/icondiffbot-2" target="_blank" rel="noreferrer">Icon Diff Bot</a>
               <span class="meta">Github App that shows icon changes in github PRs.</span>
-            </li>
-            <li class="resource-item">
-              <a href="https://affectedarc07.co.uk/rscexplorer/" target="_blank" rel="noreferrer">RSC Explorer</a>
-              <span class="meta">Tool for exploring RSC files.</span>
             </li>
             <li class="resource-item">
               <a href="https://github.com/tgstation/tgstation-server" target="_blank" rel="noreferrer">TGS</a>
@@ -124,6 +157,37 @@
           localStorage.setItem('coderbus-theme', nextTheme);
           applyTheme(nextTheme);
         });
+
+        const statusPanel = document.querySelector('.status-panel');
+        if (statusPanel) {
+          const minDelay = 10000;
+          const maxDelay = 60000;
+          const animationDurationMs = 5000;
+
+          function triggerStatusParallax() {
+            const now = new Date().toISOString();
+            console.log('[parallax] trigger at', now);
+            statusPanel.classList.remove('is-parallaxing');
+            void statusPanel.offsetWidth;
+            statusPanel.classList.add('is-parallaxing');
+
+            setTimeout(function () {
+              const finishTime = new Date().toISOString();
+              console.log('[parallax] finish at', finishTime);
+              statusPanel.classList.remove('is-parallaxing');
+              scheduleStatusParallax();
+            }, animationDurationMs);
+          }
+
+          function scheduleStatusParallax() {
+            const delay = minDelay + Math.random() * (maxDelay - minDelay);
+            const nextAt = new Date(Date.now() + delay).toISOString();
+            console.log('[parallax] scheduled for', nextAt, 'delayMs=', delay.toFixed(0));
+            setTimeout(triggerStatusParallax, delay);
+          }
+
+          scheduleStatusParallax();
+        }
       })();
     </script>
   </body>
