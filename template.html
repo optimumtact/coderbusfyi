@@ -46,9 +46,18 @@
         function applyTheme(theme) {
           root.setAttribute('data-theme', theme);
           const isLight = theme === 'light';
+          const isMarisa = theme === 'marisa';
           button.setAttribute('aria-pressed', String(isLight));
-          icon.textContent = isLight ? '☀' : '☾';
-          label.textContent = isLight ? 'light' : 'dark';
+          if (isMarisa) {
+            icon.textContent = '✦';
+            label.textContent = 'marisa';
+          } else if (isLight) {
+            icon.textContent = '☀';
+            label.textContent = 'light';
+          } else {
+            icon.textContent = '☾';
+            label.textContent = 'dark';
+          }
         }
 
         const storedTheme = localStorage.getItem('coderbus-theme');
@@ -57,7 +66,10 @@
         applyTheme(initialTheme);
 
         button.addEventListener('click', function () {
-          const nextTheme = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+          const cycle = ['dark', 'light', 'marisa'];
+          const currentTheme = root.getAttribute('data-theme') || 'dark';
+          const currentIndex = cycle.indexOf(currentTheme);
+          const nextTheme = cycle[(currentIndex + 1) % cycle.length];
           localStorage.setItem('coderbus-theme', nextTheme);
           applyTheme(nextTheme);
         });

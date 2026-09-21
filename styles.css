@@ -31,6 +31,21 @@
   --shadow: rgba(15, 23, 42, 0.08);
 }
 
+:root[data-theme="marisa"] {
+  color-scheme: dark;
+  --bg: #170b32;
+  --bg-2: #ff5ea8;
+  --panel: rgba(71, 22, 110, 0.9);
+  --panel-alt: rgba(177, 85, 255, 0.9);
+  --border: rgba(255, 246, 144, 0.9);
+  --text: #fffdf4;
+  --muted: #3d0a4c;
+  --soft: #fff2a8;
+  --accent: #ffeb5c;
+  --accent-soft: rgba(255, 255, 255, 0.22);
+  --shadow: rgba(255, 127, 176, 0.35);
+}
+
 @media (prefers-color-scheme: light) {
   :root:not([data-theme]) {
     color-scheme: light;
@@ -84,6 +99,15 @@ body {
     linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
 }
 
+:root[data-theme="marisa"] body {
+  background:
+    radial-gradient(circle at 10% 15%, rgba(255, 255, 255, 0.5), transparent 18%),
+    radial-gradient(circle at 80% 20%, rgba(255, 236, 92, 0.4), transparent 22%),
+    radial-gradient(circle at 50% 80%, rgba(255, 95, 168, 0.35), transparent 22%),
+    linear-gradient(135deg, #2f1047 0%, #6d3df5 25%, #ff5ea8 55%, #ffca3a 100%);
+  font-family: "Comic Sans MS", "Comic Sans", "Marker Felt", cursive;
+}
+
 body::before {
   content: "";
   position: fixed;
@@ -131,6 +155,16 @@ body::before {
   opacity: 0.75;
 }
 
+:root[data-theme="marisa"] body::before {
+  background-image:
+    radial-gradient(2px 2px at 10% 20%, rgba(255,255,255,0.95) 0, transparent 100%),
+    radial-gradient(2.2px 2.2px at 25% 45%, rgba(255, 245, 131, 0.9) 0, transparent 100%),
+    radial-gradient(1.8px 1.8px at 65% 30%, rgba(255, 255, 255, 0.8) 0, transparent 100%),
+    radial-gradient(2.4px 2.4px at 80% 70%, rgba(255, 255, 255, 0.85) 0, transparent 100%),
+    radial-gradient(3px 3px at 50% 80%, rgba(255, 106, 188, 0.9) 0, transparent 100%);
+  opacity: 1;
+}
+
 body::after {
   content: "";
   position: fixed;
@@ -170,6 +204,17 @@ body::after {
   opacity: 0.6;
 }
 
+:root[data-theme="marisa"] body::after {
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.08),
+    rgba(255, 255, 255, 0.08) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+  opacity: 0.8;
+}
+
 .page-shell {
   position: relative;
   max-width: 980px;
@@ -182,6 +227,13 @@ body::after {
   border: 1px solid var(--border);
   background: linear-gradient(180deg, var(--panel), var(--panel-alt));
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04), 0 0 0 1px rgba(255, 255, 255, 0.02), 0 12px 26px var(--shadow);
+}
+
+:root[data-theme="marisa"] .topbar,
+:root[data-theme="marisa"] .panel {
+  border-radius: 22px 8px 22px 8px;
+  border-width: 2px;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.15), 0 14px 28px rgba(66, 11, 77, 0.35), inset 0 0 18px rgba(255, 255, 255, 0.12);
 }
 
 .topbar {
@@ -211,6 +263,12 @@ body::after {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   font-weight: 700;
+}
+
+:root[data-theme="marisa"] .brand-mark {
+  letter-spacing: 0.14em;
+  text-shadow: 2px 2px 0 rgba(255, 94, 168, 0.8), 4px 4px 0 rgba(255, 206, 0, 0.8);
+  transform: rotate(-1deg);
 }
 
 .brand-subtitle {
@@ -244,6 +302,20 @@ body::after {
   transform: translateY(-1px);
 }
 
+:root[data-theme="marisa"] .theme-toggle {
+  background: linear-gradient(135deg, #ffb703, #ff4d8d, #7b2ff7);
+  color: #1d0b32;
+  font-weight: 700;
+  border-radius: 999px;
+  box-shadow: 0 0 18px rgba(255, 221, 94, 0.7);
+}
+
+:root[data-theme="marisa"] .theme-toggle:hover,
+:root[data-theme="marisa"] .theme-toggle:focus-visible {
+  border-color: #fff7a8;
+  transform: translateY(-1px) rotate(-2deg);
+}
+
 .theme-toggle__icon {
   display: inline-block;
   font-size: 0.9rem;
@@ -263,6 +335,12 @@ body::after {
   color: var(--soft);
   overflow: hidden;
   background: rgba(255, 255, 255, 0.02);
+}
+
+:root[data-theme="marisa"] .status-panel {
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(255, 246, 144, 0.16), rgba(255, 94, 168, 0.2));
+  transform: rotate(1deg);
 }
 
 .status-panel::before {
@@ -327,6 +405,73 @@ body::after {
 :root[data-theme="light"] .status-led {
   background: #111827;
   box-shadow: 0 0 10px rgba(15, 23, 42, 0.35);
+}
+
+:root[data-theme="marisa"] .status-led {
+  background: #fff278;
+  box-shadow: 0 0 14px rgba(255, 241, 104, 0.95), 0 0 24px rgba(255, 130, 200, 0.8);
+}
+
+:root[data-theme="marisa"] .page-shell,
+:root[data-theme="marisa"] .topbar,
+:root[data-theme="marisa"] .panel,
+:root[data-theme="marisa"] .brand-mark,
+:root[data-theme="marisa"] .brand-subtitle,
+:root[data-theme="marisa"] .theme-toggle,
+:root[data-theme="marisa"] .status-panel,
+:root[data-theme="marisa"] .resource-item,
+:root[data-theme="marisa"] .section-heading,
+:root[data-theme="marisa"] .heading-tag,
+:root[data-theme="marisa"] .resource-item a,
+:root[data-theme="marisa"] .meta {
+  animation: marisa-bounce 2.8s ease-in-out infinite alternate;
+}
+
+:root[data-theme="marisa"] .topbar {
+  animation-delay: 0.2s;
+}
+
+:root[data-theme="marisa"] .panel:nth-of-type(2n) {
+  animation-delay: 0.5s;
+}
+
+:root[data-theme="marisa"] .panel:nth-of-type(3n) {
+  animation-delay: 1s;
+}
+
+:root[data-theme="marisa"] .resource-item {
+  animation-duration: 3.4s;
+}
+
+:root[data-theme="marisa"] .theme-toggle {
+  animation-duration: 3.2s;
+}
+
+:root[data-theme="marisa"] .status-panel {
+  animation-duration: 2.6s;
+}
+
+@keyframes marisa-bounce {
+  0% {
+    transform: translate(0, 0) rotate(-1deg) scale(1);
+    filter: saturate(1.1) brightness(1);
+  }
+  20% {
+    transform: translate(-8px, -10px) rotate(2deg) scale(1.02);
+  }
+  40% {
+    transform: translate(12px, 8px) rotate(-3deg) scale(0.99);
+  }
+  60% {
+    transform: translate(-12px, 9px) rotate(4deg) scale(1.03);
+  }
+  80% {
+    transform: translate(10px, -12px) rotate(-2deg) scale(1.01);
+  }
+  100% {
+    transform: translate(-6px, 6px) rotate(1deg) scale(1);
+    filter: saturate(1.4) brightness(1.08);
+  }
 }
 
 .content {
