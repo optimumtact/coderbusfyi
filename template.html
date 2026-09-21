@@ -47,9 +47,22 @@
         function applyTheme(theme) {
           root.setAttribute('data-theme', theme);
           const isLight = theme === 'light';
+          const isMarisa = theme === 'marisa';
+          const isMatrix = theme === 'matrix';
           button.setAttribute('aria-pressed', String(isLight));
-          icon.textContent = isLight ? '☀' : '☾';
-          label.textContent = isLight ? 'light' : 'dark';
+          if (isMarisa) {
+            icon.textContent = '✦';
+            label.textContent = 'marisa';
+          } else if (isMatrix) {
+            icon.textContent = 'M';
+            label.textContent = 'matrix';
+          } else if (isLight) {
+            icon.textContent = '☀';
+            label.textContent = 'light';
+          } else {
+            icon.textContent = '☾';
+            label.textContent = 'dark';
+          }
         }
 
         const storedTheme = localStorage.getItem('coderbus-theme');
@@ -58,7 +71,10 @@
         applyTheme(initialTheme);
 
         button.addEventListener('click', function () {
-          const nextTheme = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+          const cycle = ['dark', 'light', 'marisa', 'matrix'];
+          const currentTheme = root.getAttribute('data-theme') || 'dark';
+          const currentIndex = cycle.indexOf(currentTheme);
+          const nextTheme = cycle[(currentIndex + 1) % cycle.length];
           localStorage.setItem('coderbus-theme', nextTheme);
           applyTheme(nextTheme);
         });
@@ -71,6 +87,37 @@
             bodyClasslist.add('bus-mode');
           }
         });
+
+        const statusPanel = document.querySelector('.status-panel');
+        if (statusPanel) {
+          const minDelay = 10000;
+          const maxDelay = 60000;
+          const animationDurationMs = 5000;
+
+          function triggerStatusParallax() {
+            const now = new Date().toISOString();
+            console.log('[parallax] trigger at', now);
+            statusPanel.classList.remove('is-parallaxing');
+            void statusPanel.offsetWidth;
+            statusPanel.classList.add('is-parallaxing');
+
+            setTimeout(function () {
+              const finishTime = new Date().toISOString();
+              console.log('[parallax] finish at', finishTime);
+              statusPanel.classList.remove('is-parallaxing');
+              scheduleStatusParallax();
+            }, animationDurationMs);
+          }
+
+          function scheduleStatusParallax() {
+            const delay = minDelay + Math.random() * (maxDelay - minDelay);
+            const nextAt = new Date(Date.now() + delay).toISOString();
+            console.log('[parallax] scheduled for', nextAt, 'delayMs=', delay.toFixed(0));
+            setTimeout(triggerStatusParallax, delay);
+          }
+
+          scheduleStatusParallax();
+        }
       })();
     </script>
   </body>
