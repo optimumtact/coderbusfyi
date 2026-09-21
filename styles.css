@@ -394,3 +394,12 @@ body::after {
     white-space: normal;
   }
 }
+
+.bus-button:hover {
+  color: yellow;
+  font-weight: bold;
+}
+
+.bus-mode {
+  background-image: url("https://www.rushtruckcenters.com/siteassets/on-page-images/buses/blue-bird/blue-bird-all-american-fe_1040x770.png");
+}
