@@ -630,7 +630,7 @@ body.bus-mode,
 :root[data-theme="marisa"] body.bus-mode,
 :root[data-theme="matrix"] body.bus-mode {
   background-image: url("bus.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+  background-repeat: repeat;
+  background-position: top left;
+  background-size: clamp(280px, 33vw, 520px) auto;
 }
