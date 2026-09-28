@@ -1,14 +1,12 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
-import configparser
-import json
 import html
+import json
 from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parent
-INI_FILE = ROOT / "resources.ini"
 JSON_FILE = ROOT / "resources.json"
 TEMPLATE_FILE = ROOT / "template.html"
 OUTPUT_FILE = ROOT / "index.html"
@@ -45,38 +43,11 @@ def render_section(section_index: int, title: str, items: list[dict[str, Any]]) 
     )
 
 
-def load_data_from_ini() -> dict[str, Any]:
-    parser = configparser.ConfigParser()
-    parser.optionxform = str
-    parser.read(INI_FILE, encoding="utf-8")
-
-    categories: list[dict[str, Any]] = []
-    for section in parser.sections():
-        links = []
-        for title, value in parser.items(section):
-            if " | " in value:
-                url, description = value.split(" | ", 1)
-            else:
-                url, description = value, ""
-
-            links.append(
-                {
-                    "title": title.strip(),
-                    "url": url.strip(),
-                    "description": description.strip(),
-                }
-            )
-
-        categories.append({"title": section, "links": links})
-
-    data = {"categories": categories}
+def load_data_from_json() -> dict[str, Any]:
+    data = json.loads(JSON_FILE.read_text(encoding="utf-8"))
+    if not isinstance(data, dict) or not isinstance(data.get("categories"), list):
+        raise ValueError("resources.json must contain a 'categories' list")
     return data
-
-
-def write_json_snapshot(data: dict[str, Any]) -> None:
-    JSON_FILE.write_text(
-        json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
-    )
 
 
 def build_sections(data: dict[str, Any]) -> str:
@@ -123,18 +94,17 @@ def build_html() -> str:
         raise FileNotFoundError(f"Missing template: {TEMPLATE_FILE}")
 
     template = TEMPLATE_FILE.read_text(encoding="utf-8")
-    data = load_data_from_ini()
-    write_json_snapshot(data)
+    data = load_data_from_json()
     return template.replace(PLACEHOLDER, build_sections(data))
 
 
 def main() -> None:
-    if not INI_FILE.exists():
-        raise FileNotFoundError(f"Missing resource list: {INI_FILE}")
+    if not JSON_FILE.exists():
+        raise FileNotFoundError(f"Missing resource list: {JSON_FILE}")
 
     OUTPUT_FILE.write_text(build_html(), encoding="utf-8")
     print(
-        f"Generated {OUTPUT_FILE.relative_to(ROOT)} from {TEMPLATE_FILE.relative_to(ROOT)} and {INI_FILE.relative_to(ROOT)}"
+        f"Generated {OUTPUT_FILE.relative_to(ROOT)} from {TEMPLATE_FILE.relative_to(ROOT)} and {JSON_FILE.relative_to(ROOT)}"
     )
 
 
