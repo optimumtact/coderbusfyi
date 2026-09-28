@@ -52,6 +52,16 @@
           "title": "Byond Performance Bible",
           "url": "https://docs.google.com/document/d/1lHBY6kfzFHA-eKqwJh6RuEjeHWBGTowYomcGKvODgqk/edit?usp=sharing",
           "description": "A document detailing advanced BYOND performance quirks."
+        },
+        {
+          "title": "SS13 codebase origin graph",
+          "url": "https://github.com/spacestation13/SS13-Codebases",
+          "description": "A graph of the origin point of each SS13 Fork"
+        },
+        {
+          "title": "TGUI Storybook",
+          "url": "https://tgstation.github.io/tgui-core",
+          "description": "Storybook of TGUI elements (UI used by many codebases)"
         }
       ]
     },
@@ -71,17 +81,27 @@
         {
           "title": "StrongDMM",
           "url": "https://github.com/SpaiR/StrongDMM",
-          "description": "Robust Map Editor for BYOND."
+          "description": "Robust Map Editor for BYOND"
         },
         {
           "title": "Guide To Mapping",
           "url": "https://hackmd.io/@tgstation/SyVma0dS5",
-          "description": "Learn How To Work With BYOND Maps."
+          "description": "Learn How To Work With BYOND Maps"
         },
         {
           "title": "Voidworks",
           "url": "https://github.com/voidcrew/Voidworks",
-          "description": "Fork of StrongDMM with additional features."
+          "description": "Fork of StrongDMM with additional features"
+        },
+        {
+          "title": "OpenDream for VS Code",
+          "url": "https://github.com/OpenDreamProject/vscode-opendream",
+          "description": "VS Code extension that provides an OpenDream installer, task runner, and DM debugger."
+        },
+        {
+          "title": "DMI Editor for Aseprite",
+          "url": "https://github.com/spacestation13/aseprite-dmi",
+          "description": "Aseprite extension providing DMI editing support"
         }
       ]
     },
@@ -106,7 +126,17 @@
         {
           "title": "Rust-g library",
           "url": "https://github.com/tgstation/rust-g",
-          "description": "Support Library for Rust based utility functions for the engine."
+          "description": "Support Library for Rust based utility functions for the engine"
+        },
+        {
+          "title": "meowtonin",
+          "url": "https://github.com/absolucy/meowtonin",
+          "description": "Ergonomic Rust wrapper for BYOND external library API"
+        },
+        {
+          "title": "DM Test Suite",
+          "url": "https://github.com/spacestation13/dm-test-suite",
+          "description": "Regression tests for the dreammaker language for new BYOND releases"
         }
       ]
     }
