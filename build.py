@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import html
 import json
+import re
 from pathlib import Path
 from typing import Any
 
@@ -10,11 +11,18 @@ ROOT = Path(__file__).resolve().parent
 JSON_FILE = ROOT / "resources.json"
 TEMPLATE_FILE = ROOT / "template.html"
 OUTPUT_FILE = ROOT / "index.html"
-PLACEHOLDER = "{{RESOURCE_SECTIONS}}"
+RESOURCE_PLACEHOLDER = "{{RESOURCE_SECTIONS}}"
+JSON_LD_PLACEHOLDER = "{{JSON_LD}}"
+
+
+def slugify_anchor(title: str) -> str:
+    slug = re.sub(r"[^a-z0-9]+", "-", title.lower()).strip("-")
+    return slug or "section"
 
 
 def render_section(section_index: int, title: str, items: list[dict[str, Any]]) -> str:
     list_items = []
+    section_id = slugify_anchor(title)
     for item in items:
         description = item["description"]
         description_markup = (
@@ -31,10 +39,10 @@ def render_section(section_index: int, title: str, items: list[dict[str, Any]]) 
     list_items = "\n".join(list_items)
 
     return (
-        '        <section class="panel">\n'
+        f'        <section class="panel" id="{html.escape(section_id, quote=True)}">\n'
         '          <div class="section-heading">\n'
-        f'            <span class="heading-tag">[{section_index:02d}]</span>\n'
-        f"            <h2>{html.escape(title)}</h2>\n"
+        f'            <a class="heading-tag section-anchor" href="#{html.escape(section_id, quote=True)}" aria-label="Permanent link to {html.escape(title, quote=True)}">[{section_index:02d}]</a>\n'
+        f'            <h2 id="{html.escape(section_id, quote=True)}"><a class="section-title-anchor" href="#{html.escape(section_id, quote=True)}" aria-label="Permanent link to {html.escape(title, quote=True)}">{html.escape(title)}</a></h2>\n'
         "          </div>\n\n"
         '          <ul class="resource-list">\n'
         f"{list_items}\n"
@@ -89,13 +97,69 @@ def build_sections(data: dict[str, Any]) -> str:
     return "".join(sections)
 
 
+def build_structured_data(data: dict[str, Any]) -> str:
+    item_list = []
+    for index, category in enumerate(data["categories"], start=1):
+        links = []
+        for link_index, link in enumerate(category["links"], start=1):
+            links.append(
+                {
+                    "@type": "ListItem",
+                    "position": link_index,
+                    "name": link["title"],
+                    "url": link["url"],
+                    "description": link["description"],
+                }
+            )
+
+        item_list.append(
+            {
+                "@type": "ListItem",
+                "position": index,
+                "name": category["title"],
+                "itemListElement": links,
+            }
+        )
+
+    structured_data = {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Coder // Bus",
+        "description": "Curated DM, BYOND, and SS13 references, learning resources, tooling, and infrastructure links.",
+        "url": "https://coderbus.fyi/",
+        "inLanguage": "en",
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "Coder // Bus",
+            "url": "https://coderbus.fyi/",
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Coder // Bus",
+            "url": "https://coderbus.fyi/",
+        },
+        "mainEntity": {
+            "@type": "ItemList",
+            "name": "Resource categories",
+            "itemListElement": item_list,
+        },
+    }
+
+    return (
+        '<script type="application/ld+json">\n'
+        f"{json.dumps(structured_data, ensure_ascii=False)}\n"
+        "</script>"
+    )
+
+
 def build_html() -> str:
     if not TEMPLATE_FILE.exists():
         raise FileNotFoundError(f"Missing template: {TEMPLATE_FILE}")
 
     template = TEMPLATE_FILE.read_text(encoding="utf-8")
     data = load_data_from_json()
-    return template.replace(PLACEHOLDER, build_sections(data))
+    html_output = template.replace(RESOURCE_PLACEHOLDER, build_sections(data))
+    return html_output.replace(JSON_LD_PLACEHOLDER, build_structured_data(data))
 
 
 def main() -> None:

@@ -461,6 +461,7 @@ body::after {
 
 .panel {
   padding: 1.2rem 1.25rem 1rem;
+  scroll-margin-top: 1.5rem;
 }
 
 .hero {
@@ -495,6 +496,20 @@ body::after {
   margin-bottom: 0.9rem;
   padding-bottom: 0.5rem;
   border-bottom: 1px solid var(--border);
+}
+
+.section-anchor,
+.section-title-anchor {
+  color: inherit;
+  text-decoration: none;
+}
+
+.section-anchor:hover,
+.section-title-anchor:hover,
+.section-anchor:focus-visible,
+.section-title-anchor:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
 }
 
 .section-heading h2 {
