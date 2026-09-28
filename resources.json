@@ -1,0 +1,114 @@
+{
+  "categories": [
+    {
+      "title": "Core references",
+      "links": [
+        {
+          "title": "DM Reference",
+          "url": "https://ref.dm-lang.org/",
+          "description": "Unofficial DM reference that is easy to use."
+        },
+        {
+          "title": "DM Playground",
+          "url": "https://play.dm-lang.org/",
+          "description": "Web based DM compiler and editor."
+        },
+        {
+          "title": "DM Build mirror",
+          "url": "https://byond-builds.dm-lang.org/",
+          "description": "Mirror of the official BYOND build packages."
+        },
+        {
+          "title": "DM Reference (Official)",
+          "url": "https://www.byond.com/docs/ref/#/DM",
+          "description": "Official reference (not as easy to use)."
+        }
+      ]
+    },
+    {
+      "title": "Learning paths",
+      "links": [
+        {
+          "title": "SS13 Hosting Guide",
+          "url": "https://www.youtube.com/playlist?list=PL6o5Pj2jK5oR32IIISSjMx_fJ-X5gYE2Y",
+          "description": "Playlist of videos about hosting Space Station 13 Servers."
+        },
+        {
+          "title": "Wine Byond Help",
+          "url": "https://github.com/kinggoldcatter/Wine-Byond-help",
+          "description": "Tips and tricks for getting byond running in linux."
+        },
+        {
+          "title": "Ter13's Snippet Sundays",
+          "url": "https://www.byond.com/forum/post/2215739",
+          "description": "Snippets from a BYOND wizard (not SS13 focused)."
+        },
+        {
+          "title": "DM by example",
+          "url": "https://spacestation13.github.io/DMByExample/introduction.html",
+          "description": "Step by step guide to DM in the style of rust by example."
+        },
+        {
+          "title": "Byond Performance Bible",
+          "url": "https://docs.google.com/document/d/1lHBY6kfzFHA-eKqwJh6RuEjeHWBGTowYomcGKvODgqk/edit?usp=sharing",
+          "description": "A document detailing advanced BYOND performance quirks."
+        }
+      ]
+    },
+    {
+      "title": "Toolbox",
+      "links": [
+        {
+          "title": "DM Language Server",
+          "url": "https://marketplace.visualstudio.com/items?itemName=platymuus.dm-langclient",
+          "description": "Visual Studio Code extension that provides DM language support."
+        },
+        {
+          "title": "RSC Explorer",
+          "url": "https://affectedarc07.co.uk/rscexplorer/",
+          "description": "Tool for exploring RSC files."
+        },
+        {
+          "title": "StrongDMM",
+          "url": "https://github.com/SpaiR/StrongDMM",
+          "description": "Robust Map Editor for BYOND."
+        },
+        {
+          "title": "Guide To Mapping",
+          "url": "https://hackmd.io/@tgstation/SyVma0dS5",
+          "description": "Learn How To Work With BYOND Maps."
+        },
+        {
+          "title": "Voidworks",
+          "url": "https://github.com/voidcrew/Voidworks",
+          "description": "Fork of StrongDMM with additional features."
+        }
+      ]
+    },
+    {
+      "title": "Infrastructure",
+      "links": [
+        {
+          "title": "Map Diff Bot",
+          "url": "https://github.com/apps/mapdiffbot-2",
+          "description": "Github App that shows map changes in github PRs."
+        },
+        {
+          "title": "Icon Diff Bot",
+          "url": "https://github.com/apps/icondiffbot-2",
+          "description": "Github App that shows icon changes in github PRs."
+        },
+        {
+          "title": "TGS",
+          "url": "https://github.com/tgstation/tgstation-server",
+          "description": "Hosting tool that manages DreamDaemon instances and integrates github repos."
+        },
+        {
+          "title": "Rust-g library",
+          "url": "https://github.com/tgstation/rust-g",
+          "description": "Support Library for Rust based utility functions for the engine."
+        }
+      ]
+    }
+  ]
+}

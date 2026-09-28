@@ -4,7 +4,7 @@ This project is a lightweight static website hosted on GitHub Pages using a GitH
 
 ## Resource data source
 
-The resource list is stored in `resources.ini` using a simple INI format. Each section is a category, and each entry is a label mapped to a URL and optional metadata.
+The resource list is stored in `resources.ini`. The build converts it into a JSON snapshot at `resources.json`, then renders the site from that JSON structure.
 
 Example:
 
@@ -14,7 +14,7 @@ MDN Web Docs = https://developer.mozilla.org/ | HTML / CSS / JavaScript
 GitHub Docs = https://docs.github.com/ | Git / Actions / Pages
 ```
 
-The build step runs `python3 build.py`, which reads `resources.ini` and regenerates `index.html` automatically.
+The build step runs `python3 build.py`, which reads `resources.ini`, regenerates `resources.json`, and updates `index.html` automatically.
 
 ## Local preview
 
