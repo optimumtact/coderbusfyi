@@ -500,14 +500,21 @@ body::after {
 
 .section-anchor,
 .section-title-anchor {
-  color: inherit;
+  color: var(--muted);
   text-decoration: none;
+}
+
+.section-title-anchor {
+  color: var(--text);
 }
 
 .section-anchor:hover,
 .section-title-anchor:hover,
 .section-anchor:focus-visible,
-.section-title-anchor:focus-visible {
+.section-title-anchor:focus-visible,
+.section-anchor:visited,
+.section-title-anchor:visited {
+  color: inherit;
   text-decoration: underline;
   text-underline-offset: 0.2em;
 }
