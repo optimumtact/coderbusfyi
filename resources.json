@@ -102,6 +102,11 @@
           "title": "DMI Editor for Aseprite",
           "url": "https://github.com/spacestation13/aseprite-dmi",
           "description": "Aseprite extension providing DMI editing support"
+        },
+        {
+          "title": "Rapid Mapping Device",
+          "url": "https://github.com/exdal/rmd",
+          "description": "The Most Technically Advanced BYOND Map Editor"
         }
       ]
     },
