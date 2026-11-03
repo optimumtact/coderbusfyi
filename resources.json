@@ -147,7 +147,13 @@
     },
     {
       "title": "Memes",
-      "links": []
+      "links": [
+        {
+          "title": "No Hello",
+          "url": "https://nohello.net",
+          "description": "Don't just say hello or hi to people, ask what you wanted to ask."
+        }
+      ]
     }
   ]
 }
