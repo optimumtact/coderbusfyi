@@ -112,6 +112,11 @@
           "title": "Auxtools Debugger",
           "url": "https://marketplace.visualstudio.com/items?itemName=sohpea.auxtools",
           "description": "Debug Byond worlds with breakpoints, stepping, variable inspection and hot code reload"
+        },
+        {
+          "title": "dm-lang.org Discord Bot",
+          "url": "https://discord.com/oauth2/authorize?client_id=1509817201622909079",
+          "description": "/dmref for reference pages, /play for DM playground in Discord"
         }
       ]
     },
