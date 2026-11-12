@@ -107,6 +107,11 @@
           "title": "Rapid Mapping Device",
           "url": "https://github.com/exdal/rmd",
           "description": "The Most Technically Advanced BYOND Map Editor"
+        },
+        {
+          "title": "Auxtools Debugger",
+          "url": "https://marketplace.visualstudio.com/items?itemName=sohpea.auxtools",
+          "description": "Debug Byond worlds with breakpoints, stepping, variable inspection and hot code reload"
         }
       ]
     },
